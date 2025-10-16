@@ -24,6 +24,12 @@ DEBUG = 1
 # optimization
 OPT = -Og
 
+# DFU suffix (adjust VID/PID if your board reports different values via `dfu-util -l`)
+DFU_VID   = 0x0483
+DFU_PID   = 0xDF11
+DFU_DID   = 0xFFFF
+DFU_SUFFIX = dfu-suffix --vid $(DFU_VID) --pid $(DFU_PID) --did $(DFU_DID) --add
+
 
 #######################################
 # paths
@@ -183,7 +189,9 @@ $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(HEX) $< $@
 	
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
-	$(BIN) $< $@	
+	$(BIN) $< $@
+	$(DFU_SUFFIX) $@
+
 	
 $(BUILD_DIR):
 	mkdir $@		
@@ -193,6 +201,13 @@ $(BUILD_DIR):
 #######################################
 clean:
 	-rm -fR $(BUILD_DIR)
+
+#######################################
+# flash via dfu-util
+#######################################
+.PHONY: flash
+flash: $(BUILD_DIR)/$(TARGET).bin
+	dfu-util -a 0 -s 0x08000000:leave -D $<
   
 #######################################
 # dependencies
