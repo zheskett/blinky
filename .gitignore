@@ -1,0 +1,49 @@
+# ---- OS junk (macOS)
+.DS_Store
+.AppleDouble
+.Spotlight-V100
+.Trashes
+
+# ---- Editors/IDE
+.vscode/
+*.code-workspace
+# (If you sometimes open in STM32CubeIDE/Eclipse)
+.project
+.cproject
+.settings/
+.launch
+.stm32cubeide/
+
+# ---- Build artifacts (Makefile builds)
+build/
+Build/
+Debug/
+Release/
+# Common outputs
+*.o
+*.d
+*.su
+*.dep
+*.map
+*.elf
+*.bin
+*.hex
+*.lst
+*.lss
+*.srec
+*.map
+*.log
+
+# ---- Generated middleware/cache
+*.uvguix.*        # Keil GUI state (if ever imported)
+*.uvoptx          # Keil options
+*.uvprojx         # Keil project
+
+# ---- Temporary/backup
+*.swp
+*~
+*.tmp
+
+# ---- Optional: Python virtual envs or tooling
+.venv/
+env/
