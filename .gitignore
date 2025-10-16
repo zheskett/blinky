@@ -7,6 +7,7 @@
 # ---- Editors/IDE
 .vscode/
 *.code-workspace
+.cache/
 # (If you sometimes open in STM32CubeIDE/Eclipse)
 .project
 .cproject
@@ -45,5 +46,6 @@ Release/
 *.tmp
 
 # ---- Optional: Python virtual envs or tooling
+compile_commands.json
 .venv/
 env/
